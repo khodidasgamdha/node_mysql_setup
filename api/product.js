@@ -122,6 +122,14 @@ router.delete("/product", async (req, res) => {
 
         if (product) {
             await product.destroy();
+
+            // delete Image
+            let dir = path.join(__dirname, "../", "public", "images", product.image);
+
+            fs.unlink(dir, (err) => {
+                if (err) throw err;
+                console.log('Image was deleted');
+            });
     
             res.status(200).send({
                 status: 1,
