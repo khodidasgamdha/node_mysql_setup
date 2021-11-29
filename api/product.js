@@ -82,7 +82,17 @@ router.put("/product", upload.single("productImage"), async (req, res) => {
                     name: categoryName.toLowerCase(),
                 }
             });
-    
+
+            // delete old Image
+            if (req.file) {
+                let dir = path.join(__dirname, "../", "public", "images", product.image);
+
+                fs.unlink(dir, (err) => {
+                    if (err) throw err;
+                    console.log('Image was deleted');
+                });
+            }
+
             await product.update({
                 name: name ? name : product.name,
                 categoryId: category ? category.dataValues.id : product.categoryId,
