@@ -29,30 +29,37 @@ const upload = multer({ storage: storage });
 router.post("/product", upload.single("productImage"), async (req, res) => {
     const name = req.body.product;
     const categoryName = req.body.category;
-    const sku = req.body.sku;
     const price = req.body.price;
-    const image = req.file.originalname;
 
     try {
-        // find Category based on Category Name or Create New One
-        const [category, created] = await Category.findOrCreate({
-            where: {
-                name: categoryName.toLowerCase(),
-            }
-        });
 
-        await Product.create({
-            name: name,
-            categoryId: category.dataValues.id,
-            sku: sku,
-            price: price,
-            image: image,
-        });
+        if (categoryName) {
 
-        res.status(200).send({
-            status: 1,
-            message: "Product Added Successfully.",
-        });
+            // find Category based on Category Name or Create New One
+            const [category, created] = await Category.findOrCreate({
+                where: {
+                    name: categoryName.toLowerCase(),
+                }
+            });
+    
+            await Product.create({
+                name: name,
+                categoryId: category.dataValues.id,
+                price: price,
+                image: req.file ? req.file.originalname : null,
+            });
+    
+            res.status(200).send({
+                status: 1,
+                message: "Product Added Successfully.",
+            });
+
+        } else {
+            res.status(404).send({
+                status: 0,
+                message: "Category Name Not Found.",
+            });
+        }
     } catch (error) {
         res.status(501).send({
             status: 0,

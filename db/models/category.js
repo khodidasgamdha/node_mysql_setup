@@ -16,6 +16,12 @@ module.exports = (sequelize, DataTypes) => {
                         args: [3, 255],
                         msg: "Length of Category Name should be between 3 - 255.",
                     },
+                    notNull: {
+                        msg: "Category Name can not be Null."
+                    }
+                },
+                unique: {
+                    msg: "Category Name must be Unique."
                 },
                 set(val) {
                     this.setDataValue("name", val.toLowerCase());

@@ -18,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
                         args: [3, 255],
                         msg: "Length of Product Name should be between 3 - 255.",
                     },
+                    notNull: {
+                        msg: "Product Name can not be Null."
+                    }
                 },
             },
             categoryId: {
@@ -27,18 +30,13 @@ module.exports = (sequelize, DataTypes) => {
                     isInt: {
                         msg: "Category Id Should be an Integer.",
                     },
+                    notNull: {
+                        msg: "Product Name can not be Null."
+                    }
                 },
             },
             sku: {
                 type: DataTypes.STRING,
-                allowNull: false,
-                validate: {
-                    notNull(val) {
-                        if (val.length <= 0) {
-                            throw new Error("SKU Should Not be Null.");
-                        }
-                    },
-                },
             },
             price: {
                 type: DataTypes.FLOAT,
@@ -47,23 +45,25 @@ module.exports = (sequelize, DataTypes) => {
                     isFloat: {
                         msg: "Price Should be Float.",
                     },
+                    notNull: {
+                        msg: "Price can not be Null."
+                    }
                 },
             },
             image: {
                 type: DataTypes.STRING,
                 allowNull: false,
                 validate: {
-                    notNull(val) {
-                        if (val.length <= 0) {
-                            throw new Error("Image Should Not be Null.");
-                        }
-                    },
+                    notNull: {
+                        msg: "Image can not be Null."
+                    }
                 },
             },
         },
         {
             sequelize,
             modelName: "product",
+            hasTrigger: true
         }
     );
     return product;

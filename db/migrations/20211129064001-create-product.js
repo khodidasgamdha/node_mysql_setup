@@ -10,18 +10,23 @@ module.exports = {
             },
             name: {
                 type: Sequelize.STRING,
+                allowNull: false
             },
             categoryId: {
                 type: Sequelize.INTEGER,
+                allowNull: false
             },
             sku: {
                 type: Sequelize.STRING,
+                unique: true,
             },
             price: {
                 type: Sequelize.FLOAT,
+                allowNull: false
             },
             image: {
                 type: Sequelize.STRING,
+                allowNull: false
             },
             createdAt: {
                 allowNull: false,
