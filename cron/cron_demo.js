@@ -1,15 +1,16 @@
 const cron = require("node-cron");
 
-// Get Currunt Time
-const today = new Date();
-const date = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`;
-const time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
-const dateTime = `${date} - ${time}`;
-
 module.exports = {
     callEveryMinute: () => {
-        cron.schedule("* * * * *", () => {
-            console.log(`Running a cron every minute: ${dateTime}`);
+        cron.schedule("0 9,15,22 * * *", () => {
+            
+            // Get Currunt Time
+            const today = new Date();
+            const date = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`;
+            const time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+            const dateTime = `${date} - ${time}`;
+            
+            console.log(`Running a cron at 9am, 3pm and 10pm: ${dateTime}`);
         });
     }
 }
