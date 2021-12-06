@@ -1,15 +1,14 @@
 require("dotenv").config();
+const express = require("express");
 const morgan = require("morgan");
 const fs = require("fs");
-const path = require("path")
+const path = require("path");
+const fp = require("find-free-port");
 const crons = require("./cron/cron_demo");
-const express = require("express");
 const Category = require("./api/category");
 const Product = require("./api/product");
 
 const app = express();
-
-const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,9 +30,28 @@ app.use((req, res, next) => {
     next();
 });
 
+// routes
 app.use(Category);
 app.use(Product);
 
-app.listen(PORT, () => {
-    console.log(`🚀  Server listenining at http://127.0.0.1:${PORT}`);
+let PORT = parseInt(process.env.PORT);
+
+// check for free port if existing port is in use
+process.on("uncaughtException", (error) => {
+    fp(PORT)
+        .then(([freep]) => {
+            PORT = parseInt(freep);
+            listenServer();
+        })
+        .catch((err) => {
+            console.error(err);
+        });
 });
+
+const listenServer = () => {
+    app.listen(PORT, () => {
+        console.log(`🚀 Server listenining at http://127.0.0.1:${PORT}`);
+    });
+};
+
+listenServer();
