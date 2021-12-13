@@ -14,7 +14,11 @@ module.exports = {
             },
             categoryId: {
                 type: Sequelize.INTEGER,
-                allowNull: false
+                allowNull: false,
+                references: {
+                    model: "categories",
+                    key: "id",
+                },
             },
             sku: {
                 type: Sequelize.STRING,

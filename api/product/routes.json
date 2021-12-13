@@ -1,0 +1,32 @@
+[
+    {
+        "path": "/",
+        "method": "get",
+        "action": "product.getProduct",
+        "public": true,
+        "root": true
+    },
+    {
+        "path": "/new",
+        "method": "post",
+        "action": "product.addProduct",
+        "middlewares": ["middleware.moduleMiddleware"],
+        "globalMiddlewares": ["file.globalMiddleware"],
+        "public": true,
+        "root": true
+    },
+    {
+        "path": "/update",
+        "method": "put",
+        "action": "product.updateProduct",
+        "public": true,
+        "root": true
+    },
+    {
+        "path": "/delete",
+        "method": "delete",
+        "action": "product.deleteProduct",
+        "public": true,
+        "root": true
+    }
+]

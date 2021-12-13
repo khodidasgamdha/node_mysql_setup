@@ -1,0 +1,6 @@
+{
+    "allowBody":true,
+    "allowHeaders":false,
+    "databaselogs":true,
+    "consolelogs":false
+}

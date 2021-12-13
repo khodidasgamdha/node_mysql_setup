@@ -1,0 +1,30 @@
+[
+    {
+        "path": "/",
+        "method": "get",
+        "action": "category.getCategory",
+        "public": true,
+        "root": true
+    },
+    {
+        "path": "/new",
+        "method": "post",
+        "action": "category.addCategory",
+        "public": true,
+        "root": true
+    },
+    {
+        "path": "/update",
+        "method": "put",
+        "action": "category.updateCategory",
+        "public": true,
+        "root": true
+    },
+    {
+        "path": "/delete",
+        "method": "delete",
+        "action": "category.deleteCategory",
+        "public": true,
+        "root": true
+    }
+]

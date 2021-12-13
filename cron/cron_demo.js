@@ -1,7 +1,7 @@
 const cron = require("node-cron");
 
 module.exports = {
-    callEveryMinute: () => {
+    callAtSpecificTime: () => {
         cron.schedule("0 9,15,22 * * *", () => {
             
             // Get Currunt Time
@@ -10,7 +10,12 @@ module.exports = {
             const time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
             const dateTime = `${date} - ${time}`;
             
-            console.log(`Running a cron at 9am, 3pm and 10pm: ${dateTime}`);
+            console.log(`Cron will Run at 9am, 3pm and 10pm: ${dateTime}`);
+        });
+    },
+    callEveryHour: () => {
+        cron.schedule("0 * * * *", () => {
+            console.log("Cron will Call every Hour.");
         });
     }
 }

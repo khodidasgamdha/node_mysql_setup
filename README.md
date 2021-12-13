@@ -1,2 +1,1 @@
-# sequelize_demo
-Sequelize Demo App - Product Category Association
+## NodeJs Project Setup for MySQL (Sequelize)
