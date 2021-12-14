@@ -1,5 +1,5 @@
 {
-    "name": "mode_sequelize_setup",
+    "name": "mode_mysql_setup",
     "version": "1.0.0",
     "description": "NodeJs Setup with MySQL DB (Sequelize)",
     "main": "src/app.js",
