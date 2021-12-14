@@ -5,3 +5,5 @@ app.log
 
 # Database Logs
 dbLogs
+
+package-lock.json
